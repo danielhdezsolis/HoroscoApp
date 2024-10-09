@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.hilt.android) // Aplicamos el plugin de Hilt
+    alias(libs.plugins.androidx.navigation.safeargs) // Aplicamos el plugin de Safe Args
+    id("kotlin-kapt") // Necesario para KAPT
 }
 
 android {
@@ -36,6 +39,10 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    /*
+    kotlin {
+        jvmToolchain(8)
+    }*/
 }
 
 dependencies {
@@ -51,4 +58,8 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Hilt dependencies
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler) // Para la compilación de anotaciones
 }
